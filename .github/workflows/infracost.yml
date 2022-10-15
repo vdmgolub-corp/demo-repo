@@ -8,6 +8,12 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+    env:
+      INFRACOST_ENABLE_CLOUD: true
+      INFRACOST_DASHBOARD_ENDPOINT: https://dashboard.dev.infracost.io
+      INFRACOST_DASHBOARD_API_ENDPOINT: https://dashboard.api.dev.infracost.io
+      INFRACOST_DEFAULT_PRICING_API_ENDPOINT: https://pricing.api.dev.infracost.io
+      INFRACOST_PRICING_API_ENDPOINT: https://pricing.api.dev.infracost.io
 
     steps:
       - name: Setup Infracost
