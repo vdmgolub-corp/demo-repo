@@ -9,7 +9,7 @@ resource "azurerm_linux_virtual_machine" "my_vm" {
   location            = "eastus"
 
   size           = "Basic_A2" # <<<<< Try changing this to Basic_A4 to compare the costs
-  admin_username = "fakeuser"
+  admin_username = "fakeuser-123"
   admin_password = "fakepass"
 
   network_interface_ids = [
