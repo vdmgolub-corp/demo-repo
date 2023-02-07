@@ -6,6 +6,25 @@ provider "aws" {
   secret_key                  = "mock_secret_key"
 }
 
+module "ec2_instance" {
+  source  = "foobar-aws-modules/ec2-instance/aws"
+  version = "~> 3.0"
+
+  name = "single-instance"
+
+  ami                    = "ami-ebd02392"
+  instance_type          = "t2.micro"
+  key_name               = "user1"
+  monitoring             = true
+  vpc_security_group_ids = ["sg-12345678"]
+  subnet_id              = "subnet-eddcdzz4"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+  }
+}
+  
 resource "aws_instance" "web_app" {
   ami           = "ami-674cbc1e"
   instance_type = "m5.4xlarge" # <<<<< Try changing this to m5.8xlarge to compare the costs
