@@ -29,3 +29,36 @@ resource "aws_lambda_function" "hello_world" {
   runtime       = "nodejs12.x"
   memory_size   = 512 # <<<<< Try changing this to 512 to compare costs
 }
+
+resource "aws_db_proxy" "example" {
+  name                   = "example"
+  debug_logging          = false
+  engine_family          = "MYSQL"
+  idle_client_timeout    = 1800
+  require_tls            = true
+  role_arn               = "arn"
+
+  auth {
+    auth_scheme = "SECRETS"
+    description = "example"
+    iam_auth    = "DISABLED"
+    secret_arn  = "arn"
+  }
+
+  tags = {
+    Name = "example"
+    Key  = "value"
+  }
+}
+
+resource "aws_db_proxy_endpoint" "example" {
+  db_proxy_name          = aws_db_proxy.example.name
+  db_proxy_endpoint_name = "example"
+  target_role            = "READ_ONLY"
+}
+
+resource "aws_db_proxy_endpoint" "example2" {
+  db_proxy_name          = aws_db_proxy.example.name
+  db_proxy_endpoint_name = "example"
+  target_role            = "READ_ONLY"
+}
