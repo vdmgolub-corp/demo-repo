@@ -18,12 +18,12 @@ resource "google_compute_instance" "instance1" {
    preemptible = true
  }
 
-  guest_accelerator {
+  guest_accelerator = {
     type = "nvidia-tesla-t4" # <<<<< Try changing this to nvidia-tesla-p4 to compare the costs
     count = 4
   }
 
-  network_interface {
+  network_interface = {
     network = "default"
 
     access_config {
