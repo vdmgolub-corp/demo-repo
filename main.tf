@@ -28,4 +28,5 @@ resource "aws_lambda_function" "hello_world" {
   handler       = "exports.test"
   runtime       = "nodejs12.x"
   memory_size   = 512 # <<<<< Try changing this to 512 to compare costs
+  architectures = ["arm64"]
 }
